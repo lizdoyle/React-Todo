@@ -13,21 +13,20 @@ class TodoForm extends React.Component {
     handleChanges = e => {
         this.setState({todoName: e.target.value});
         console.log("handle change in app:", this.state.todoName)
+    }
 
 
-
-        handleSubmit = e => {
-            this.props.addTodo(e, this.state.todoName)
-            this.setState({todoName: ""});
-        }
+    handleSubmit = e => {
+        this.props.addTodo(e, this.state.todoName)
+        this.setState({todoName: ""});
+        };
 
 
 
 
     render() {
-        console.log("render form");
         return (
-            <form>
+            <form onSubmit={this.handleSubmit}>
                 <input
                     type="text"
                     name="todoItem"
@@ -36,10 +35,10 @@ class TodoForm extends React.Component {
                 />
                 <button>Add Todo</button>
             </form>
-        )
+             )
 
         }
     }
-}
+
 
 export default TodoForm

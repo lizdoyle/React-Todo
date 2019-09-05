@@ -1,5 +1,8 @@
 import React from 'react';
 
+import TodoList from "./components/TodoComponents/TodoList"
+import TodoForm from "./components/TodoComponents/TodoForm"
+
 const todos = [
   {
     task: 'Organize Garage',
@@ -25,18 +28,25 @@ class App extends React.Component {
   // design `App` to be the parent component of your application.
   // this component is going to take care of state, and any change handlers you need to work with your state
 
-  addTodo = e => {
+  addTodo = (e, todoName) => {
     e.preventDefault();
-    const crrntTodo = this.state.todos.filter( todo => todo.name === todoName)
-    this.setState( );
+    const crrntTodo = this.state.todos.filter( todo => todo.task === todoName);
+      if (crrntTodo.length === 0) {
+        const newTodo = {
+          task: todoName,
+          id: Date.now(),
+          completed: false
+        }
+      
+    this.setState({todos: [...this.state.todos, newTodo]});
     console.log("handle change in app:")
-
-  
+  }
+}
 
     clearCompleted = e => { 
       e.preventDefault();
       this.setState({
-        todos: this.state.todos.filter(todo => !todo.completed);
+        todos: this.state.todos.filter(todo => !todo.completed)
       });
     }
 
@@ -46,6 +56,8 @@ class App extends React.Component {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
+        <TodoForm addTodo={this.addTodo}/>
+        <TodoList />
       </div>
     );
   }
