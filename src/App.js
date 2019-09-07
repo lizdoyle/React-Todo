@@ -28,19 +28,16 @@ class App extends React.Component {
   // design `App` to be the parent component of your application.
   // this component is going to take care of state, and any change handlers you need to work with your state
 
-  addTodo = (e, todoName) => {
-    e.preventDefault();
-    const existingTodo = this.state.todos.filter( todo => todo.task === todoName);
-      if (existingTodo.length === 0) {
+  addTodo = (todoName) => {    
         const newTodo = {
           task: todoName,
           id: Date.now(),
           completed: false
         }
-      
+      console.log(todoName)
     this.setState({todos: [...this.state.todos, newTodo]});
-    console.log("handle change in app:")
-  }
+    console.log("handle change in app:", newTodo)
+  
 }
 
     clearCompleted = e => { 

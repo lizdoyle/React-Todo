@@ -7,7 +7,7 @@ const Todo = props => {
                     props.clearCompleted(props.todo.id);
                 }}
                 >
-            <p>{props.todo.name}</p>
+            <p>{props.todo.task}</p>
         </div>
     )
 
