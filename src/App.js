@@ -19,7 +19,7 @@ const todos = [
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
-  constructor(){
+  constructor() {
     super();
     this.state = { 
       todos //todos: todos is the same as just calling todos
@@ -30,8 +30,8 @@ class App extends React.Component {
 
   addTodo = (e, todoName) => {
     e.preventDefault();
-    const crrntTodo = this.state.todos.filter( todo => todo.task === todoName);
-      if (crrntTodo.length === 0) {
+    const existingTodo = this.state.todos.filter( todo => todo.task === todoName);
+      if (existingTodo.length === 0) {
         const newTodo = {
           task: todoName,
           id: Date.now(),
@@ -56,8 +56,8 @@ class App extends React.Component {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoForm addTodo={this.addTodo}/>
-        <TodoList />
+        <TodoForm addTodo={this.addTodo} />
+        <TodoList todos={this.state.todos} clearCompleted={this.clearCompleted} />
       </div>
     );
   }
